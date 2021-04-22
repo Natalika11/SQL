@@ -167,4 +167,25 @@ FROM Laptop JOIN
 Product ON Laptop.model = Product.model
 GROUP BY maker
 
+20.Найдите производителей, выпускающих по меньшей мере три различных модели ПК. Вывести: Maker, число моделей ПК.
+
+SELECT maker, COUNT(model) AS count_model 
+FROM Product WHERE type ='PC'
+GROUP BY maker
+HAVING COUNT(model) >= 3
+
+21.Найдите максимальную цену ПК, выпускаемых каждым производителем, у которого есть модели в таблице PC.
+Вывести: maker, максимальная цена.
+
+SELECT maker, MAX(price) AS max_price            
+FROM PC JOIN 
+Product ON PC.model = Product.model
+GROUP BY maker
+
+22.Для каждого значения скорости ПК, превышающего 600 МГц, определите среднюю цену ПК с такой же скоростью. Вывести: speed, средняя цена.
+
+SELECT speed, AVG(price) AS avg_price 
+FROM PC WHERE speed > 600
+GROUP BY speed
+
 
